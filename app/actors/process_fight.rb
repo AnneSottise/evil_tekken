@@ -15,8 +15,10 @@ class ProcessFight < Actor
 
     until winner.present?
       round += 1
+
       attacker, defenser = set_attacker_and_defenser
       damage = inflict_damage(attacker, defenser)
+
       record_round(attacker, defenser, round, damage)
 
       # Should we allow a fight to end without a winner?
