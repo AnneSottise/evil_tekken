@@ -64,31 +64,31 @@ weapons_data = [
     name: 'Baseball bat',
     attack: 2,
     defense: 1,
-    avatar: File.open('db/seeds/bat.png'),
+    avatar: File.open('db/seeds/bat.jpg'),
   },
   {
     name: 'Chainsaw',
-    attack: 4,
+    attack: 2,
     defense: 1,
-    avatar: File.open('db/seeds/chainsaw.png'),
+    avatar: File.open('db/seeds/chainsaw.jpg'),
   },
   {
-    name: 'Machinegun',
-    attack: 5,
+    name: 'DFlamethrower',
+    attack: 2,
     defense: 0,
-    avatar: File.open('db/seeds/machinegun.png'),
+    avatar: File.open('db/seeds/flamethrower.jpg'),
   },
   {
     name: 'Machete',
-    attack: 3,
+    attack: 1,
     defense: 1,
-    avatar: File.open('db/seeds/machete.png'),
+    avatar: File.open('db/seeds/machete.jpg'),
   },
   {
     name: 'Claws',
     attack: 2,
     defense: 2,
-    avatar: File.open('db/seeds/claws.png'),
+    avatar: File.open('db/seeds/claws.jpg'),
   },
 ]
 
@@ -96,5 +96,9 @@ Weapon.delete_all
 
 weapons_data.each do |data|
   form = WeaponForm.new(Weapon.new)
-  form.save if form.validate(data)
+  if form.validate(data)
+    form.save
+  else
+    puts form.errors.full_messages
+  end
 end
