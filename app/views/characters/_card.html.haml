@@ -1,0 +1,11 @@
+.card.shadow-sm
+  .card-header
+    %h4.card-text
+      = character.name.upcase
+      - if winner
+        = "🏆"
+  = image_tag character.avatar.url, class: 'bd-placeholder-img'
+  .card-body
+    %span.badge.bg-success= "#{character.life} LIFE"
+    %span.badge.bg-danger= "#{character.attack} ATK"
+    %span.badge.bg-info= "#{character.defense} DEF"

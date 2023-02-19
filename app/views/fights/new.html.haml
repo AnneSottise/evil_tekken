@@ -1,0 +1,17 @@
+.row.text-center.m-lg-5
+  .col
+    %h1 Make the most legendary horror movies characters fight each others!
+
+    %p Have you ever dreamt of your favorite horror movies characters fighting each other? Well, sometime dreams come true.
+
+= simple_form_for @form, wrapper: :vertical_form, wrapper_mappings: { select: :vertical_select } do |f|
+  .row
+    - if @form.errors.any?
+      = f.error :base, class: 'alert alert-danger'
+    = f.simple_fields_for :fighters do |ff|
+      .col-6.text-center
+        %h2.mb-lg-3= "Choose player #{ff.options[:child_index] + 1}!"
+        = ff.input :character_id, collection: characters_collection, include_blank: false, label: false
+        = ff.input :weapon_id, collection: weapons_collection, include_blank: false, label: false
+
+    = f.button :submit, 'Fight!', class: 'w-100 btn btn-primary btn-lg'

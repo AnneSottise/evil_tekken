@@ -1,0 +1,11 @@
+.row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3.mb-lg-5.mt-lg-5
+  - @weapons.each do |weapon|
+    .col
+      .card.shadow-sm
+        .card-header
+          %h4.card-text= weapon.name.upcase
+        = image_tag weapon.avatar.url, class: 'bd-placeholder-img'
+        .card-body
+          %p
+            %span.badge.bg-danger= "#{weapon.attack} ATK"
+            %span.badge.bg-info= "#{weapon.defense} DEF"

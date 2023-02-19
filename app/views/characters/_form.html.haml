@@ -1,0 +1,10 @@
+= simple_form_for @form, wrapper: :horizontal_form do |f|
+  - if @form.errors.any?
+    = f.error :base, class: 'alert alert-danger'
+  = f.input :name
+  = f.input :avatar, as: :file
+  = f.input :life, collection: Character::STATS_RANGES[:life]
+  = f.input :attack, collection: Character::STATS_RANGES[:attack]
+  = f.input :defense, collection: Character::STATS_RANGES[:defense]
+
+  = f.button :submit, class: 'w-100 btn btn-primary btn-lg'

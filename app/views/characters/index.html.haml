@@ -1,0 +1,28 @@
+.row
+  .col
+    %p.d-flex.flex-row-reverse
+      = link_to 'Create a character', new_character_path, class: 'btn btn-primary my-2'
+.row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3.mb-lg-5
+  - @characters.each do |character|
+    .col
+      .card.shadow-sm
+        .card-header
+          %h4.card-text= character.name.upcase
+        = image_tag character.avatar.url, class: 'bd-placeholder-img'
+        .card-body
+          %p
+            %span.badge.bg-success= "#{character.life} LIFE"
+            %span.badge.bg-danger= "#{character.attack} ATK"
+            %span.badge.bg-info= "#{character.defense} DEF"
+
+          %p
+            %span= "Wins: #{character.wins_count}"
+            %br
+            %span= "Win rate: #{format_win_rate(character.win_rate)}"
+            %br
+            %span= "Favorite weapon: #{character.favorite_weapon}"
+        .card-footer
+          .d-flex.justify-content-end
+            .btn-group
+              = link_to 'Edit', edit_character_path(character), class: 'btn btn-sm btn-secondary'
+              = link_to 'Destroy', edit_character_path(character), class: 'btn btn-sm btn-danger'

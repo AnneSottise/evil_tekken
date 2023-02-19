@@ -12,6 +12,21 @@ AllCops:
     - docs/**/*
     - node_modules/**/*
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: 'comma'
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

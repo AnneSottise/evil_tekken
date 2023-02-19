@@ -1,0 +1,18 @@
+.row.mb-5.mt-5
+  .col-3
+    = render 'characters/card', character: @fighter1.character, winner: @fighter1.victory?
+  .col-1
+    %p.text-center AGAINST
+  .col-3
+    = render 'characters/card', character: @fighter2.character, winner: @fighter2.victory?
+
+.row
+  .col
+    %h2.mb-5 Rounds
+    - @fight.rounds.order(:position).each do |round|
+      %h5= "Round #{round.position}"
+      %p= "#{round.attacker.name} attacked #{round.defenser.name} and inflicted #{round.damage.round(2)} point of damages!"
+      %p= "#{round.defenser.name} life down to #{round.defenser_life.round(2)}"
+      %hr
+
+    %p= "#{@fight.winner&.name} wins!"

@@ -1,0 +1,26 @@
+.row.mb-5.mt-5
+  .col
+    %h2 Fights
+
+.row
+  .col
+    %table.table
+      %thead
+        %tr
+          %th Fighter 1
+          %th Fighter 2
+          %th Date
+          %th
+
+      %tbody
+        - @fights.each do |fight|
+          %tr
+            - fight.fighters.each do |fighter|
+              %td
+                %b= fighter.character.name
+                with
+                %b= fighter.weapon.name
+                - if fighter.victory?
+                  = '🏆'
+            %td= fight.created_at.strftime('%d/%m/%Y %H:%M')
+            %td= link_to 'See rounds', fight

@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.0.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'
@@ -24,11 +24,35 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'haml'
 
+# CSS framework
+gem 'bootstrap', '~> 5.2.3'
+
+# Files uploader
+gem 'carrierwave'
+gem 'rmagick'
+
+# Form objects, decoupled from models
+gem 'reform'
+gem 'reform-rails'
+
+gem 'simple_form'
+
+gem 'pry-rails'
+
+# Generate models for specs
+gem 'factory_bot_rails', require: false
+
+# Generate fake data such as names, addresses, and phone numbers.
+gem 'faker', require: false
+
+# Create chained services
+gem 'service_actor', '3.1.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootsnap', '>= 1.16', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
