@@ -35,8 +35,10 @@ gem 'rmagick'
 gem 'reform'
 gem 'reform-rails'
 
+# DSL to build HTML forms
 gem 'simple_form'
 
+# Debugger
 gem 'pry-rails'
 
 # Generate models for specs
