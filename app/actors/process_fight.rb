@@ -83,16 +83,10 @@ class ProcessFight < Actor
   def record_result
     return if winner.blank?
 
-    winner.update(victory: true, experience: compute_experience(winner: true))
-    loser.update(victory: false, experience: compute_experience(winner: false))
+    winner.update(victory: true, experience: Fight::WINNER_EXPERIENCE_BONUS)
+    loser.update(victory: false, experience: Fight::LOSER_EXPERIENCE_BONUS)
     winner.character.check_level
     loser.character.check_level
-  end
-
-  def compute_experience(winner:)
-    experience = Fight::MINIMUM_EXPERIENCE_BONUS
-    experience += Fight::WINNING_EXPERIENCE_BONUS if winner
-    experience
   end
 
   def fighter1

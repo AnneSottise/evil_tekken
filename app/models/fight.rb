@@ -1,7 +1,7 @@
 class Fight < ActiveRecord::Base
   ATTACK_MODIFICATOR_RANGE = (-20..20).freeze
-  MINIMUM_EXPERIENCE_BONUS = 10
-  WINNING_EXPERIENCE_BONUS = 20
+  LOSER_EXPERIENCE_BONUS = 10
+  WINNER_EXPERIENCE_BONUS = 30
   MAX_ROUNDS = 100
 
   has_many :fighters, dependent: :destroy
