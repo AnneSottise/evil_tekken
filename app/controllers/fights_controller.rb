@@ -5,8 +5,8 @@ class FightsController < ApplicationController
 
   def show
     @fight = Fight.find params[:id]
-    @fighter1 = @fight.fighter1
-    @fighter2 = @fight.fighter2
+    @winner = @fight.winner
+    @loser = @fight.loser
     @rounds = @fight.rounds.order(:position)
   end
 

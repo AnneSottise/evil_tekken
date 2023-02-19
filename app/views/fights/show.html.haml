@@ -1,10 +1,14 @@
-.row.mb-5.mt-5
+.row.mt-5
+  .col
+    %p= "On the glorious day of the #{@fight.created_at.strftime('%d %B %Y')}, #{@winner.name} fought #{@loser.name} and defeated him!"
+
+.row.mb-5
   .col-3
-    = render 'characters/card', character: @fighter1.character, winner: @fighter1.victory?
+    = render 'characters/card', character: @winner.character, winner: true
   .col-1
     %p.text-center AGAINST
   .col-3
-    = render 'characters/card', character: @fighter2.character, winner: @fighter2.victory?
+    = render 'characters/card', character: @loser.character, winner: false
 
 .row
   .col

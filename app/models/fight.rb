@@ -19,4 +19,8 @@ class Fight < ActiveRecord::Base
   def winner
     fighters.find_by(victory: true)
   end
+
+  def loser
+    fighters.find_by(victory: nil)
+  end
 end
