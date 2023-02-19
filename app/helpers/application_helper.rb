@@ -2,7 +2,7 @@
 module ApplicationHelper
   def characters_collection
     Character.all.shuffle.map do |character|
-      [character.name, character.id]
+      ["#{character.name} (LVL #{character.level})", character.id]
     end
   end
 

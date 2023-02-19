@@ -10,7 +10,6 @@ class FightsController < ApplicationController
     @rounds = @fight.rounds.order(:position)
   end
 
-  # Maybe check if fighters are not both the same character
   def new
     fight = Fight.new
     2.times { |_t| fight.fighters.build }

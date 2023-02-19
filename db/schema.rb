@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_19_163013) do
+ActiveRecord::Schema.define(version: 2023_02_19_210356) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -20,16 +20,17 @@ ActiveRecord::Schema.define(version: 2023_02_19_163013) do
     t.string "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "level"
   end
 
   create_table "fighters", force: :cascade do |t|
     t.integer "character_id"
     t.integer "fight_id"
     t.integer "weapon_id"
-    t.integer "experience_won"
     t.boolean "victory"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "experience"
     t.index ["character_id"], name: "index_fighters_on_character_id"
     t.index ["fight_id"], name: "index_fighters_on_fight_id"
     t.index ["weapon_id"], name: "index_fighters_on_weapon_id"

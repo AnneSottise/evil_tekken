@@ -1,0 +1,11 @@
+.row.mt-5
+  .col
+    %p It's a tie !
+
+.row.mb-5
+  .col-3
+    = render 'characters/card', character: @fight.fighter1.character, winner: false
+  .col-1
+    %p.text-center AGAINST
+  .col-3
+    = render 'characters/card', character: @fight.fighter2.character, winner: false

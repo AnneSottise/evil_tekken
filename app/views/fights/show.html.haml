@@ -1,22 +1,6 @@
-.row.mt-5
-  .col
-    %p= "On the glorious day of the #{@fight.created_at.strftime('%d %B %Y')}, #{@winner.name} fought #{@loser.name} and defeated him!"
+- if @winner.present?
+  = render 'fights/with_winner'
+- else
+  = render 'fights/without_winner'
 
-.row.mb-5
-  .col-3
-    = render 'characters/card', character: @winner.character, winner: true
-  .col-1
-    %p.text-center AGAINST
-  .col-3
-    = render 'characters/card', character: @loser.character, winner: false
-
-.row
-  .col
-    %h2.mb-5 Rounds
-    - @fight.rounds.order(:position).each do |round|
-      %h5= "Round #{round.position}"
-      %p= "#{round.attacker.name} attacked #{round.defenser.name} and inflicted #{round.damage.round(2)} point of damages!"
-      %p= "#{round.defenser.name} life down to #{round.defenser_life.round(2)}"
-      %hr
-
-    %p= "#{@fight.winner&.name} wins!"
+= render 'rounds/list', rounds: @rounds

@@ -8,6 +8,7 @@ class ProcessFight < Actor
         }
 
   output :winner, allow_nil: true
+  output :loser, allow_nil: true
 
   def call
     round = 1
@@ -20,10 +21,10 @@ class ProcessFight < Actor
 
       # Should we allow a fight to end without a winner?
       # Or should we work more on characters stats to ensure a winner?
-      break if round >= 100
+      break if round >= Fight::MAX_ROUNDS
     end
 
-    record_victory
+    record_result
   end
 
   private
@@ -46,7 +47,10 @@ class ProcessFight < Actor
     damage = compute_damage(attacker.attack, defenser.defense)
     defenser.life -= damage
 
-    result.winner = attacker if defenser.life <= 0
+    if defenser.life <= 0
+      result.winner = Fighter.find(attacker.id)
+      result.loser = Fighter.find(defenser.id)
+    end
 
     damage
   end
@@ -76,10 +80,19 @@ class ProcessFight < Actor
     )
   end
 
-  def record_victory
+  def record_result
     return if winner.blank?
 
-    Fighter.find(winner.id).update(victory: true)
+    winner.update(victory: true, experience: compute_experience(winner: true))
+    loser.update(victory: false, experience: compute_experience(winner: false))
+    winner.character.check_level
+    loser.character.check_level
+  end
+
+  def compute_experience(winner:)
+    experience = Fight::MINIMUM_EXPERIENCE_BONUS
+    experience += Fight::WINNING_EXPERIENCE_BONUS if winner
+    experience
   end
 
   def fighter1

@@ -13,7 +13,7 @@ class CharactersController < ApplicationController
   end
 
   def create
-    @form = CharacterForm.new(Character.new)
+    @form = CharacterForm.new(Character.new(level: 1))
 
     if @form.validate(character_params)
       @form.save

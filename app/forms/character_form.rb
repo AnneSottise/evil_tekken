@@ -6,6 +6,7 @@ class CharacterForm < Reform::Form
   property :attack
   property :defense
   property :avatar
+  property :level
 
   validates :name,
             :life,
@@ -17,27 +18,37 @@ class CharacterForm < Reform::Form
   validates :life,
             numericality: {
               only_integer: true,
-              in: Character::STATS_RANGES[:life],
+              greater_than_or_equal_to: Character::LIFE_RANGE.min,
+              less_than_or_equal_to: Character::LIFE_RANGE.max,
             }
 
   validates :attack,
             numericality: {
               only_integer: true,
-              in: Character::STATS_RANGES[:attack],
+              greater_than_or_equal_to: Character::ATTACK_RANGE.min,
+              less_than_or_equal_to: Character::ATTACK_RANGE.max,
             }
 
   validates :defense,
             numericality: {
               only_integer: true,
-              in: Character::STATS_RANGES[:defense],
+              greater_than_or_equal_to: Character::DEFENSE_RANGE.min,
+              less_than_or_equal_to: Character::DEFENSE_RANGE.max,
+            }
+
+  validates :level,
+            numericality: {
+              only_integer: true,
+              greater_than_or_equal_to: Character::LEVEL_RANGE.min,
+              less_than_or_equal_to: Character::LEVEL_RANGE.min,
             }
 
   validate :balanced_stats
 
   def balanced_stats
-    return if attack.to_i + defense.to_i == 6
+    return if attack.to_i + defense.to_i == Character::BALANCED_STATS_SUM
 
-    errors.add :base, 'Unbalanced character! ' \
-                      'Sum of attack and defense should equals 6'
+    errors.add :base, 'Unbalanced character! Sum of attack and defense ' \
+                      "should equal #{Character::BALANCED_STATS_SUM}"
   end
 end

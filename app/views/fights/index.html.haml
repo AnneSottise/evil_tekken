@@ -17,9 +17,9 @@
           %tr
             - fight.fighters.each do |fighter|
               %td
-                %b= fighter.character.name
+                %b= fighter.character&.name
                 with
-                %b= fighter.weapon.name
+                %b= fighter.weapon&.name
                 - if fighter.victory?
                   = '🏆'
             %td= fight.created_at.strftime('%d/%m/%Y %H:%M')

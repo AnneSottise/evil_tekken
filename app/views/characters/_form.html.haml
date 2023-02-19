@@ -3,8 +3,14 @@
     = f.error :base, class: 'alert alert-danger'
   = f.input :name
   = f.input :avatar, as: :file
-  = f.input :life, collection: Character::STATS_RANGES[:life]
-  = f.input :attack, collection: Character::STATS_RANGES[:attack]
-  = f.input :defense, collection: Character::STATS_RANGES[:defense]
+
+  - if @form.model.persisted?
+    = f.input :life, disabled: @form.model.persisted?
+    = f.input :attack, disabled: @form.model.persisted?
+    = f.input :defense, disabled: @form.model.persisted?
+  - else
+    = f.input :life, collection: Character::LIFE_RANGE
+    = f.input :attack, collection: Character::ATTACK_RANGE
+    = f.input :defense, collection: Character::DEFENSE_RANGE
 
   = f.button :submit, class: 'w-100 btn btn-primary btn-lg'

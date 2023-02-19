@@ -1,0 +1,13 @@
+.row.mt-5
+  .col
+    %p= "On the glorious day of the #{@fight.created_at.strftime('%d %B %Y')}, #{@winner.name} fought #{@loser.name} and defeated him!"
+    %p= "#{@winner.name} won #{@winner.experience} xp"
+    %p= "#{@loser.name} won #{@loser.experience} xp"
+
+.row.mb-5
+  .col-4
+    = render 'characters/card', character: @winner.character, winner: true
+  .col-1
+    %p.text-center AGAINST
+  .col-4
+    = render 'characters/card', character: @loser.character, winner: false

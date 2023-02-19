@@ -1,0 +1,8 @@
+.row
+  .col
+    %h2.mb-5 Rounds
+    - rounds.each do |round|
+      %h5= "Round #{round.position}"
+      %p= "#{round.attacker.name} attacked #{round.defenser.name} and inflicted #{round.damage.round(2)} point of damages!"
+      %p= "#{round.defenser.name} life down to #{round.defenser_life.round(2)}"
+      %hr
